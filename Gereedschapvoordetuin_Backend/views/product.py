@@ -1,5 +1,4 @@
 from drf_yasg import openapi
-from drf_yasg.utils import swagger_auto_schema
 
 import html
 
@@ -32,8 +31,6 @@ def get_page_and_queryset(request):
     return {"page": page, "queryset": queryset, "amount_per_row": amount_per_row}
 
 
-@swagger_auto_schema(method='get', manual_parameters=[page_param],
-                     responses={200: openapi.Response('Returns 25 Products', ProductSerializer)})
 @api_view(['GET'])
 def get_product(request):
     """
@@ -53,8 +50,6 @@ def get_product(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@swagger_auto_schema(method='get', manual_parameters=[page_param],
-                     responses={200: openapi.Response('Returns 25 Products based on search query', ProductSerializer)})
 @api_view(['GET'])
 def search_product_with_query(request, query):
     """

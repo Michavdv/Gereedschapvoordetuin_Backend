@@ -40,14 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Third-Part apps
-    'rest_framework_swagger',
-    'corsheaders',
-    'rest_framework.authtoken',
-    'drf_yasg',
 
     # Local apps
-
     'Gereedschapvoordetuin_Backend.apps.GereedschapvoordetuinBackendConfig',
 ]
 
