@@ -3,7 +3,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions, authentication
 
-from Gereedschapvoordetuin_Backend.views import product
+from .views import product
 
 schema_view = get_schema_view(
     openapi.Info(
