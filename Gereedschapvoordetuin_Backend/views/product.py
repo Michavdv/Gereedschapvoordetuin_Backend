@@ -1,5 +1,3 @@
-from drf_yasg import openapi
-
 import html
 
 from rest_framework import status
@@ -8,8 +6,6 @@ from rest_framework.response import Response
 
 from Gereedschapvoordetuin_Backend.models import Product
 from Gereedschapvoordetuin_Backend.serializers import ProductSerializer, SearchSerializer
-
-page_param = openapi.Parameter('page', in_=openapi.IN_QUERY, required=True, type=openapi.TYPE_INTEGER)
 
 
 def get_page_and_queryset(request):
