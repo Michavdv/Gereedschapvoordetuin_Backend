@@ -1,15 +1,9 @@
-from django.urls import include, path, re_path
-from rest_framework_swagger.views import get_swagger_view
+from django.urls import include, path
 
 from .views import product
 
-schema_view = get_swagger_view(
-      title="Gereedschapvoordetuin API"
-)
 
 urlpatterns = [
-    # Swagger
-    re_path(r'^$', schema_view),
 
     # Products
     path('products/', product.get_product, name='get_product'),
