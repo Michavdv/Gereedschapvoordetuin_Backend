@@ -20,3 +20,8 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ['ean_code', 'product_id', 'product_name', 'product_description', 'product_price', 'product_image',
                   'product_weight',
                   'product_height', 'product_length', 'product_width', 'product_url']
+
+
+class SearchSerializer(serializers.Serializer):
+    products = ProductSerializer(many=True)
+    amount = serializers.IntegerField()
