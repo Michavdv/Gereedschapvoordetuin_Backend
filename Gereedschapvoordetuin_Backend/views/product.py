@@ -1,3 +1,6 @@
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
+
 import html
 
 from rest_framework import status
@@ -6,6 +9,8 @@ from rest_framework.response import Response
 
 from Gereedschapvoordetuin_Backend.models import Product
 from Gereedschapvoordetuin_Backend.serializers import ProductSerializer, SearchSerializer
+
+page_param = openapi.Parameter('page', in_=openapi.IN_QUERY, required=True, type=openapi.TYPE_INTEGER)
 
 
 def get_page_and_queryset(request):
@@ -27,6 +32,8 @@ def get_page_and_queryset(request):
     return {"page": page, "queryset": queryset, "amount_per_row": amount_per_row}
 
 
+@swagger_auto_schema(method='get', manual_parameters=[page_param],
+                     responses={200: openapi.Response('Returns 25 Products', ProductSerializer)})
 @api_view(['GET'])
 def get_product(request):
     """
