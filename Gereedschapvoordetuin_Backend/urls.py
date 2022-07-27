@@ -7,9 +7,9 @@ from .views import product
 
 schema_view = get_schema_view(
     openapi.Info(
-      title="SCHAPR API",
+      title="Gereedschapvoordetuin API",
       default_version='v1',
-      description="The API for https://www.schapr.nl",
+      description="The API for https://www.gereedschapvoordetuin.nl",
     ),
     public=True,
     permission_classes=[permissions.AllowAny],
