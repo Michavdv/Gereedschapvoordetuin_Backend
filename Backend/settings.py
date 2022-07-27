@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'corsheaders',
+    'rest_framework.authtoken',
+    'drf_yasg',
 
     # Local apps
     'Gereedschapvoordetuin_Backend.apps.GereedschapvoordetuinBackendConfig',
@@ -143,6 +146,16 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'DRF Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
 }
 
 ALLOWED_HOSTS=['*']
