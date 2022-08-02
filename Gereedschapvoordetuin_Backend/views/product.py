@@ -1,7 +1,7 @@
+import html
+
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
-
-import html
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -14,22 +14,23 @@ page_param = openapi.Parameter('page', in_=openapi.IN_QUERY, required=True, type
 
 
 def get_page_and_queryset(request):
-    page = request.GET.get('page')
-    amount_per_row = request.GET.get('amount')
+    # page = request.GET.get('page')
+    # amount_per_row = request.GET.get('amount')
 
-    if page and page.isnumeric():
-        page = int(page)
-    else:
-        return {}
+    # if page and page.isnumeric():
+    #     page = int(page)
+    # else:
+    #     return {}
 
-    if amount_per_row and amount_per_row.isnumeric():
-        amount_per_row = int(amount_per_row)
-    else:
-        amount_per_row = 5
+    # if amount_per_row and amount_per_row.isnumeric():
+    #     amount_per_row = int(amount_per_row)
+    # else:
+
+    amount_per_row = 5
 
     queryset = Product.objects.all()
 
-    return {"page": page, "queryset": queryset, "amount_per_row": amount_per_row}
+    return {"queryset": queryset, "amount_per_row": amount_per_row}
 
 
 @swagger_auto_schema(method='get', manual_parameters=[page_param],
@@ -47,8 +48,8 @@ def get_product(request):
     if not data:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-    search_result = {"products": data['queryset'][((data['page'] - 1) * (data['amount_per_row'] * 6)):(
-                (data['amount_per_row'] * 6) * data['page'])], "amount": len(data['queryset'])}
+    search_result = {"products": data['queryset'][(data['amount_per_row'] * 6):(
+                data['amount_per_row'] * 6)], "amount": len(data['queryset'])}
     serializer = SearchSerializer(search_result)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
