@@ -25,4 +25,4 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class SearchSerializer(serializers.Serializer):
     products = ProductSerializer(many=True)
-    amount = serializers.IntegerField()
+    # amount = serializers.IntegerField()

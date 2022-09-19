@@ -48,8 +48,7 @@ def get_product(request):
     if not data:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-    search_result = {"products": data['queryset'][(data['amount_per_row'] * 6):(
-                data['amount_per_row'] * 6)], "amount": len(data['queryset'])}
+    search_result = {"products": data['queryset'][:25]}
     serializer = SearchSerializer(search_result)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
